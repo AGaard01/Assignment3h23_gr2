@@ -1,0 +1,51 @@
+---
+title: "Assignment 3; Pendling"
+format: html
+editor: visual
+---
+
+```{r}
+#| label: setup
+#| output: false
+#| message: false
+#| echo: false
+library(tidyverse)
+library(tidyselect)
+library(lubridate)
+library(PxWebApiData)
+library(flextable)
+```
+
+# Innledning
+
+## Kommuner på Haugalandet2022
+
+# Hente data fra SSB
+
+## Rekkefølge kommunene
+
+## Et lite eksempel
+
+## Rekkefølge på rekker og kolonner i pendlematrisene
+
+## Pendlematriser
+
+# Spørsmål
+
+## Spørsmål vedrørende pendle/andels-matrisene for 2000
+
+## Spørsmål vedrørende pendle/andels-matrisene for 2012
+
+## Spørsmål vedrørende pendle/andels-matrisene for 2022
+
+# Plots
+
+## Oppgave
+
+				
+
+			
+
+		
+
+	
