@@ -91,18 +91,125 @@ pend_00_22_arbHland$arb_kom <- fct_collapse(pend_00_22_arbHland$arb_kom,
                                       Bokn = "Bokn",
                                       Tysvær = "Tysvær",
                                       Karmøy = "Karmøy",
-                                      Vindafjord_Ølen = c("Vindafjord", "Vindafjord (1965-2005)", "Ølen (2002-2005)"),
+                                      Sveio = c("Sveio", "Sveio (-2019)"),
+                                      Etne = c("Etne", "Etne (-2019)"),
+                                      Vindafjord = c("Vindafjord", "Vindafjord (1965-2005)", "Ølen (2002-2005)"),
                                       other_level = "Andre")
+```
 
+```{r}
+pend_00_22_arbHland$bo_kom <- fct_collapse(pend_00_22_arbHland$bo_kom, 
+                                      Haugesund = "Haugesund",
+                                      Sauda = "Sauda",
+                                      Bokn = "Bokn",
+                                      Tysvær = "Tysvær",
+                                      Karmøy = "Karmøy",
+                                      Sveio = c("Sveio", "Sveio (-2019)"),
+                                      Etne = c("Etne", "Etne (-2019)"),
+                                      Vindafjord = c("Vindafjord", "Vindafjord (1965-2005)", "Ølen (2002-2005)"),
+                                      other_level = "Andre")
+```
+
+```{r}
 pend_00_22_boHland$bo_kom <- fct_collapse(pend_00_22_boHland$bo_kom, 
                                      Haugesund = "Haugesund",
                                      Sauda = "Sauda",
                                      Bokn = "Bokn",
                                      Tysvær = "Tysvær",
                                      Karmøy = "Karmøy",
-                                     Vindafjord_Ølen = c("Vindafjord", "Vindafjord (1965-2005)", "Ølen (2002-2005)"),
+                                     Sveio = c("Sveio", "Sveio (-2019)"),
+                                      Etne = c("Etne", "Etne (-2019)"),
+                                     Vindafjord = c("Vindafjord", "Vindafjord (1965-2005)", "Ølen (2002-2005)"),
                                      other_level = "Andre")
+```
 
+```{r}
+pend_00_22_boHland$arb_kom <- fct_collapse(pend_00_22_boHland$arb_kom, 
+                                      Haugesund = "Haugesund",
+                                      Sauda = "Sauda",
+                                      Bokn = "Bokn",
+                                      Tysvær = "Tysvær",
+                                      Karmøy = "Karmøy",
+                                      Sveio = c("Sveio", "Sveio (-2019)"),
+                                      Etne = c("Etne", "Etne (-2019)"),
+                                      Vindafjord = c("Vindafjord", "Vindafjord (1965-2005)", "Ølen (2002-2005)"),
+                                      other_level = "Andre")
+```
+
+```{r}
+# eval: false
+   pend_00_22_arbHland <- pend_00_22_arbHland |>
+     group_by(aar, bo_kom, arb_kom) |>
+     summarise(pendlere = sum(pendlere), .groups = "drop")
+```
+
+```{r}
+dim(pend_00_22_arbHland)
+```
+
+```{r}
+pend_00_22_arbHland |>
+     head(n = 5)
+```
+
+```{r}
+# eval: false
+   pend_00_22_boHland <- pend_00_22_boHland |>
+     group_by(aar, arb_kom, bo_kom) |>
+     summarise(pendlere = sum(pendlere), .groups = "drop")
+```
+
+```{r}
+dim(pend_00_22_boHland)
+```
+
+```{r}
+pend_00_22_boHland |>
+     head(n = 5)
+```
+
+```{r}
+pmat_long <- pend_00_22_arbHland |> 
+  full_join(
+    pend_00_22_boHland,
+    by = c("aar", "arb_kom", "bo_kom", "pendlere")
+  ) |> 
+  ungroup()
+```
+
+```{r}
+dim(pmat_long)
+```
+
+```{r}
+pmat_long |> head(n = 5)
+```
+
+```{r}
+# Anta at 'pmat_long' er ditt primære datasett og inneholder kolonnene 'aar', 'bo_kom', 'arb_kom', og 'pendlere'.
+
+# Beregn 'bo_percent' og 'arb_percent' direkte i 'pmat_long'
+pmat_long <- pmat_long %>%
+  group_by(bo_kom, aar) %>%
+  mutate(total_bo_kom = sum(pendlere), 
+         bo_percent = round((pendlere / total_bo_kom) * 100, 1)) %>%
+  ungroup() %>%
+  group_by(arb_kom, aar) %>%
+  mutate(total_arb_kom = sum(pendlere), 
+         arb_percent = round((pendlere / total_arb_kom) * 100, 1)) %>%
+  ungroup() %>%
+  select(-total_bo_kom, -total_arb_kom)
+
+# Skriv ut 'pmat_long' for å bekrefte endringene
+print(head(pmat_long))
+```
+
+```{r}
+dim(pmat_long)
+```
+
+```{r}
+pmat_long |> head(n = 5)
 ```
 
 ## Rekkefølge kommunene
