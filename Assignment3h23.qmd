@@ -36,7 +36,7 @@ returnApiQuery = TRUE
 pend_00_22_ssb_boHland <- PxWebApiData::ApiData12(
   urlToData = as.character(03321),
   ArbstedKomm = list("*"),
-  Bokommuen = c("1106", "1135", "1145", "1149", "1154", "1159", "1160", "4611", "4612", "1211", "1216"),
+  Bokommuen = c("1106", "1135", "1145", "1146", "1149", "1154", "1159", "1160", "4611", "4612", "1211", "1216"),
   Tid = as.character(2000:2022)
 )
 ```
@@ -46,7 +46,7 @@ pend_00_22_ssb_boHland <- PxWebApiData::ApiData12(
 # Datasett antall arbeidstakere som arbeider på Haugalandet
 pend_00_22_ssb_arbHland <- PxWebApiData::ApiData12(
   urlToData = as.character(03321),
-  ArbstedKomm = c("1106", "1135", "1145", "1149", "1154", "1159", "1160", "4611", "4612", "1211", "1216"),
+  ArbstedKomm = c("1106", "1135", "1145", "1146", "1149", "1154", "1159", "1160", "4611", "4612", "1211", "1216"),
   Bokommuen = list("*"),
   Tid = as.character(2000:2022)
 )
