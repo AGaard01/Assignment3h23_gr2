@@ -52,6 +52,34 @@ pend_00_22_ssb_arbHland <- PxWebApiData::ApiData12(
 )
 ```
 
+```{r}
+pend_00_22_arbHland <- pend_00_22_ssb_arbHland |> 
+  select(
+    aar = Tid,
+    arb_kom = arbeidsstedskommune,
+    bo_kom = bostedskommune,
+    pendlere = value
+  )
+```
+
+```{r}
+pend_00_22_boHland <- pend_00_22_ssb_boHland |> 
+  select(
+    aar = Tid,
+    arb_kom = arbeidsstedskommune,
+    bo_kom = bostedskommune,
+    pendlere = value
+  )
+```
+
+```{r}
+print(pend_00_22_boHland, n = 5)
+```
+
+```{r}
+print(pend_00_22_arbHland, n = 5)
+```
+
 ## Rekkefølge kommunene
 
 ## Et lite eksempel
