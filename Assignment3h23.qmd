@@ -2,6 +2,7 @@
 title: "Assignment 3; Pendling"
 format: html
 editor: visual
+lang: no
 ---
 
 ```{r}
@@ -78,6 +79,27 @@ print(pend_00_22_boHland, n = 5)
 
 ```{r}
 print(pend_00_22_arbHland, n = 5)
+```
+
+```{r}
+pend_00_22_arbHland$arb_kom <- fct_collapse(pend_00_22_arbHland$arb_kom, 
+                                      Haugesund = "Haugesund",
+                                      Sauda = "Sauda",
+                                      Bokn = "Bokn",
+                                      Tysvær = "Tysvær",
+                                      Karmøy = "Karmøy",
+                                      Vindafjord_Ølen = c("Vindafjord", "Ølen"),
+                                      other_level = "Andre")
+
+pend_00_22_boHland$bo_kom <- fct_collapse(pend_00_22_boHland$bo_kom, 
+                                     Haugesund = "Haugesund",
+                                     Sauda = "Sauda",
+                                     Bokn = "Bokn",
+                                     Tysvær = "Tysvær",
+                                     Karmøy = "Karmøy",
+                                     Vindafjord_Ølen = c("Vindafjord", "Ølen"),
+                                     other_level = "Andre")
+
 ```
 
 ## Rekkefølge kommunene
