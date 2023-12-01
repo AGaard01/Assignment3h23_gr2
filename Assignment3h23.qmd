@@ -2,7 +2,7 @@
 title: "Assignment 3; Pendling"
 format: html
 editor: visual
-lang: no
+language: nb.yaml
 ---
 
 ```{r}
@@ -79,6 +79,10 @@ print(pend_00_22_boHland, n = 5)
 
 ```{r}
 print(pend_00_22_arbHland, n = 5)
+```
+
+```{r}
+
 ```
 
 ```{r}
