@@ -15,6 +15,7 @@ library(tidyselect)
 library(lubridate)
 library(PxWebApiData)
 library(flextable)
+library(forcats)
 ```
 
 # Innledning
@@ -83,6 +84,27 @@ print(pend_00_22_arbHland, n = 5)
 
 ```{r}
 
+
+library(forcats)
+
+# Konverterer 'arb_kom' til en faktor
+pend_00_22_arbHland$arb_kom <- as.factor(pend_00_22_arbHland$arb_kom)
+
+# Bruk fct_collapse() for å kollapse kategoriene
+pend_00_22_arbHland$arb_kom <- fct_collapse(pend_00_22_arbHland$arb_kom, 
+                                            Haugesund = "Haugesund",
+                                            Sauda = "Sauda",
+                                            Bokn = "Bokn",
+                                            Tysvær = "Tysvær",
+                                            Karmøy = "Karmøy",
+                                            Vindafjord_Ølen = c("Vindafjord", "Ølen"),
+                                            other_level = "Andre")
+
+
+pend <- pend_00_22_arbHland |> 
+  fct(arb_kom = character(),
+      levels = NULL,
+      na = character())
 ```
 
 ```{r}
