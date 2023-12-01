@@ -82,17 +82,16 @@ print(pend_00_22_arbHland, n = 5)
 ```
 
 ```{r}
+pend_00_22_arbHland$arb_kom <- fct(pend_00_22_arbHland$arb_kom)
+pend_00_22_boHland$bo_kom <- fct(pend_00_22_boHland$bo_kom)
 
-```
-
-```{r}
 pend_00_22_arbHland$arb_kom <- fct_collapse(pend_00_22_arbHland$arb_kom, 
                                       Haugesund = "Haugesund",
                                       Sauda = "Sauda",
                                       Bokn = "Bokn",
                                       Tysvær = "Tysvær",
                                       Karmøy = "Karmøy",
-                                      Vindafjord_Ølen = c("Vindafjord", "Ølen"),
+                                      Vindafjord_Ølen = c("Vindafjord", "Vindafjord (1965-2005)", "Ølen (2002-2005)"),
                                       other_level = "Andre")
 
 pend_00_22_boHland$bo_kom <- fct_collapse(pend_00_22_boHland$bo_kom, 
@@ -101,7 +100,7 @@ pend_00_22_boHland$bo_kom <- fct_collapse(pend_00_22_boHland$bo_kom,
                                      Bokn = "Bokn",
                                      Tysvær = "Tysvær",
                                      Karmøy = "Karmøy",
-                                     Vindafjord_Ølen = c("Vindafjord", "Ølen"),
+                                     Vindafjord_Ølen = c("Vindafjord", "Vindafjord (1965-2005)", "Ølen (2002-2005)"),
                                      other_level = "Andre")
 
 ```
