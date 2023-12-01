@@ -18,9 +18,22 @@ library(flextable)
 
 # Innledning
 
-## Kommuner på Haugalandet2022
+## Kommuner på Haugalandet 2022
 
 # Hente data fra SSB
+
+```{r}
+Mun2000to2022 <- ApiData(
+  "https://data.ssb.no/api/v0/no/table/03321/",
+  Bokommuen = list("11*"),
+  Tid = as.character(c(
+    rep(2000:2022, each = 12), 
+    "M",
+    sprintf("%02d", 1:12), 
+    sep = "")
+  )
+)
+```
 
 ## Rekkefølge kommunene
 
@@ -41,11 +54,3 @@ library(flextable)
 # Plots
 
 ## Oppgave
-
-				
-
-			
-
-		
-
-	
