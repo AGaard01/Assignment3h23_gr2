@@ -23,15 +23,32 @@ library(flextable)
 # Hente data fra SSB
 
 ```{r}
-Mun2000to2022 <- ApiData(
-  "https://data.ssb.no/api/v0/no/table/03321/",
-  Bokommuen = list("11*"),
-  Tid = as.character(c(
-    rep(2000:2022, each = 12), 
-    "M",
-    sprintf("%02d", 1:12), 
-    sep = "")
-  )
+#Get more info about table
+ApiData(
+"http://data.ssb.no/api/v0/en/table/03321",
+returnApiQuery = TRUE
+) 
+```
+
+```{r}
+#| cache: true
+# Datasett med arbeidstakere som bor på Haugalandet
+pend_00_22_ssb_boHland <- PxWebApiData::ApiData12(
+  urlToData = as.character(03321),
+  ArbstedKomm = list("*"),
+  Bokommuen = c("1106", "1135", "1145", "1149", "1154", "1159", "1160", "4611", "4612", "1211", "1216"),
+  Tid = as.character(2000:2022)
+)
+```
+
+```{r}
+#| cache: true
+# Datasett antall arbeidstakere som arbeider på Haugalandet
+pend_00_22_ssb_arbHland <- PxWebApiData::ApiData12(
+  urlToData = as.character(03321),
+  ArbstedKomm = c("1106", "1135", "1145", "1149", "1154", "1159", "1160", "4611", "4612", "1211", "1216"),
+  Bokommuen = list("*"),
+  Tid = as.character(2000:2022)
 )
 ```
 
